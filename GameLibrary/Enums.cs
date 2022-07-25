@@ -8,9 +8,9 @@ namespace GameLibrary
 {
     public enum AnswerStatus
     {
-        Empty,
-        Schere,
-        Stein,
-        Papier
+        EMPTY = 0,
+        SCHERE = 1,
+        STEIN = 2,
+        PAPIER = 3
     }
 }
