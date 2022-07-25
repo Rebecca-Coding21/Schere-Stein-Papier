@@ -7,7 +7,7 @@ using GameLibrary;
 
 namespace Schere_Stein_Papier
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -17,24 +17,67 @@ namespace Schere_Stein_Papier
             //ask player 2 for answers
             //count rounds
             //
-
+            
 
 
             PlayerInfoModel activePlayer = CreatePlayer("Player 1: ");
             PlayerInfoModel opponent = CreatePlayer("Player 2: ");
+            AskForGameInformation(activePlayer, opponent);
 
-            string winner = GameLogic.FindWinner(AskForAnswer());
+            string gameWinner = GameLogic.FindGameWinner(activePlayer, opponent);
+            DisplayWinner(gameWinner);
 
-            DisplayWinnerofRound(activePlayer);
-
-            
+            //string winner = GameLogic.FindWinner(AskForAnswer());
+                       
 
             Console.ReadLine();
         }
 
-        private static string AskForAnswer(string message)
+        private static void DisplayWinner(string gameWinner)
         {
-            string answer = Console.ReadLine();
+            Console.WriteLine($"{gameWinner} hat das Spiel gewonnen!");
+        }
+
+        private static void AskForGameInformation(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
+        {
+             for (int i = 0; i < 3; i++)
+            {
+                
+
+                activePlayer.RecentAnswer = AskForAnswer(activePlayer.Username);
+                opponent.RecentAnswer = AskForAnswer(opponent.Username);
+
+                GameLogic.GameRound(activePlayer, opponent, i);
+                
+            }
+            
+        }
+
+        private static AnswerStatus AskForAnswer(string username)
+        {
+            Console.WriteLine($"{username}, du bist dran: ");
+            Console.Write("Schere/Stein/Papier?: ");
+            string stringAnswer = Console.ReadLine().ToUpper();
+            AnswerStatus answer = AnswerStatus.EMPTY;
+
+            try
+            {
+                var success = Enum.TryParse(stringAnswer, out answer);
+
+                if (!success)
+                    throw new Exception();
+
+     
+            }
+            catch
+            {
+                Console.WriteLine("Bitte neue Antwort eingeben, es ist ein Fehler aufgetreten (Schere/Stein/Papier)!");
+                return AskForAnswer(username);
+                
+            }
+
+
+
 
             return answer;
             
@@ -47,15 +90,17 @@ namespace Schere_Stein_Papier
             Console.WriteLine("erstellt von Rebecca :)");
         }
 
-        private static PlayerInfoModel CreatePlayer(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
+        private static PlayerInfoModel CreatePlayer(string playerTitle)
         {
             PlayerInfoModel output = new PlayerInfoModel();
 
+            Console.WriteLine(playerTitle);
             output.Username = AskForUsername();
 
-            //output.NumberOfWins = GameLogic.FindWinner(player);
+            
 
-            string answer = AskForAnswer("Schere/Stein/Papier?: ");
+            //output.NumberOfWins = GameLogic.FindWinner(player);
+            //output.RecentAnswer = AskForAnswer("Schere/Stein/Papier?: ");
 
             return output;
         }
