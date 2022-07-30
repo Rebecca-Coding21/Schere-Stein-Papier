@@ -60,14 +60,21 @@ namespace Schere_Stein_Papier
             string stringAnswer = Console.ReadLine().ToUpper();
             AnswerStatus answer = AnswerStatus.EMPTY;
 
+            catchException(stringAnswer, answer);
+
             try
             {
-                var success = Enum.TryParse(stringAnswer, out answer);
+                if(int.TryParse(stringAnswer, out _))
+                      throw new Exception();
 
-                if (!success)
+                if (Enum.TryParse(stringAnswer, out answer) == false)
+                {
                     throw new Exception();
+                }
+                
+                              
+                                                 
 
-     
             }
             catch
             {
@@ -76,14 +83,50 @@ namespace Schere_Stein_Papier
                 
             }
 
+            //if (Convert.ToInt32(stringAnswer) != null)
+            //{
+            //    throw new Exception("Bitte auf korrekte Eingabe achten (Schere/Stein/Papier).");
+            //}
 
+            //try
+            //{
+            //    if (Convert.ToInt32(stringAnswer) != null)
+            //    {
+            //        throw new Exception("Bitte auf korrekte Eingabe achten (Schere/Stein/Papier).");
+            //    }
+            //}
+            //catch
+            //{
+
+            //    Console.WriteLine("Bitte auf korrekte Eingabe achten (Schere/Stein/Papier).");
+            //}
 
 
             return answer;
             
         }
 
-       
+        private static void catchException(string stringAnswer, AnswerStatus answer)
+        {
+            try
+            {
+                if (int.TryParse(stringAnswer, out _))
+                    throw new Exception();
+
+                if (Enum.TryParse(stringAnswer, out answer) == false)
+                {
+                    throw new Exception();
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("Bitte neue Antwort eingeben, es ist ein Fehler aufgetreten (Schere/Stein/Papier)!");
+                return AskForAnswer(username);
+
+            }
+        }
+
         private static void WelcomeMessage()
         {
             Console.WriteLine("Willkommen zu Schere-Stein-Papier");
