@@ -8,17 +8,12 @@ namespace GameLibrary
 {
     public class GameLogic
     {
-        //public static string FindWinner(string answer)
-        //{
-        //string result;
-
-        //if (Enum.TryParse<answer.ToUpper()> (Schere, out AnswerStatus)
-        //{
-
-        //}
-
-        //return result;
-        // }
+        /// <summary>
+        /// Checks which player won the round and counts the number of wins for each player
+        /// </summary>
+        /// <param name="player1">information for player 1 (Username, number of wins, recent answer, status)</param>
+        /// <param name="player2">information for player 2 (Username, number of wins, recent answer, status)</param>
+        /// <param name="i">index of the current round</param>
         public static void GameRound(PlayerInfoModel player1, PlayerInfoModel player2, int i)
         {
           
@@ -26,67 +21,6 @@ namespace GameLibrary
             AnswerStatus recentAnswer2 = player2.RecentAnswer;
             string winner = "";
 
-
-            //switch (recentAnswer1)
-            //{
-            //    case AnswerStatus.SCHERE:
-            //        switch (recentAnswer2)
-            //        {
-            //            case AnswerStatus.STEIN:
-            //                break;
-            //            case AnswerStatus.PAPIER:
-            //                break;
-            //        }
-            //        break;
-            //    case AnswerStatus.STEIN:
-            //        break;
-            //    case AnswerStatus.PAPIER:
-            //        break;
-            //}
-
-            ////if (recentAnswer1 == recentAnswer2)
-            ////{
-            ////    Console.WriteLine("Unentschieden");
-            ////    winner = "niemand";
-            ////}
-
-            ////switch (recentAnswer1)
-            ////{
-            ////    case AnswerStatus.SCHERE:
-            ////        switch (recentAnswer2)
-            ////        {
-            ////            case AnswerStatus.STEIN:
-            ////                winner = player2.Username;
-            ////                player2.NumberOfWins += 1; 
-            ////            case AnswerStatus.PAPIER:
-            ////                winner = player1.Username;
-            ////                player1.NumberOfWins += 1;
-            ////        }
-            ////        break;
-            ////    case AnswerStatus.STEIN:
-            ////        switch (recentAnswer2)
-            ////        {
-            ////            case AnswerStatus.SCHERE:
-            ////                winner = player1.Username;
-            ////                player1.NumberOfWins += 1;
-            ////            case AnswerStatus.PAPIER:
-            ////                winner = player2.Username;
-            ////                player2.NumberOfWins += 1;
-            ////        }
-            ////        break;
-            ////    case AnswerStatus.PAPIER:
-            ////        switch (recentAnswer2)
-            ////        {
-            ////            case AnswerStatus.STEIN:
-            ////                winner = player1.Username;
-            ////                player1.NumberOfWins += 1;
-            ////            case AnswerStatus.SCHERE:
-            ////                winner = player2.Username;
-            ////                player2.NumberOfWins += 1;
-            ////        }
-            ////        break;
-
-            ////}
 
             if (recentAnswer1 == recentAnswer2)
             {
@@ -131,6 +65,13 @@ namespace GameLibrary
                       
         }
 
+
+        /// <summary>
+        /// Finds the winner of the whole game according to the winner of each round
+        /// </summary>
+        /// <param name="player1">information for player 1 (Username, number of wins, recent answer, status)</param>
+        /// <param name="player2">information for player 2 (Username, number of wins, recent answer, status)</param>
+        /// <returns>name of the player who won the whole game</returns>
         public static string FindGameWinner(PlayerInfoModel player1, PlayerInfoModel player2)
         {
             string totalWinner;
