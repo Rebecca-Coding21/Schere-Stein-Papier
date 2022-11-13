@@ -60,28 +60,28 @@ namespace Schere_Stein_Papier
             string stringAnswer = Console.ReadLine().ToUpper();
             AnswerStatus answer = AnswerStatus.EMPTY;
 
-            catchException(stringAnswer, answer);
+            CatchException(stringAnswer, answer, username);
 
-            try
-            {
-                if(int.TryParse(stringAnswer, out _))
-                      throw new Exception();
+            //try
+            //{
+            //    if(int.TryParse(stringAnswer, out _))
+            //          throw new Exception();
 
-                if (Enum.TryParse(stringAnswer, out answer) == false)
-                {
-                    throw new Exception();
-                }
+            //    if (Enum.TryParse(stringAnswer, out answer) == false)
+            //    {
+            //        throw new Exception();
+            //    }
                 
                               
                                                  
 
-            }
-            catch
-            {
-                Console.WriteLine("Bitte neue Antwort eingeben, es ist ein Fehler aufgetreten (Schere/Stein/Papier)!");
-                return AskForAnswer(username);
+            //}
+            //catch
+            //{
+            //    Console.WriteLine("Bitte neue Antwort eingeben, es ist ein Fehler aufgetreten (Schere/Stein/Papier)!");
+            //    return AskForAnswer(username);
                 
-            }
+            //}
 
             //if (Convert.ToInt32(stringAnswer) != null)
             //{
@@ -106,7 +106,7 @@ namespace Schere_Stein_Papier
             
         }
 
-        private static void catchException(string stringAnswer, AnswerStatus answer)
+        private static void CatchException(string stringAnswer, AnswerStatus answer, string username)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace Schere_Stein_Papier
             catch
             {
                 Console.WriteLine("Bitte neue Antwort eingeben, es ist ein Fehler aufgetreten (Schere/Stein/Papier)!");
-                return AskForAnswer(username);
+                AskForAnswer(username);
 
             }
         }
@@ -153,7 +153,7 @@ namespace Schere_Stein_Papier
             Console.Write("Wie heißt du: ");
             string output= Console.ReadLine();
 
-            return output;
+            return output;   
         }
     }
 }

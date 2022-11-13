@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
-    <Compile Include="GameInfoModel.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="PlayerInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
